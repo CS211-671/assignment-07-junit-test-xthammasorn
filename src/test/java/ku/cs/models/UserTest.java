@@ -14,6 +14,9 @@ class UserTest {
         String actual = user.getPassword();
         String unexpected = "plain-p@ssw0rd";
         assertNotEquals(unexpected, actual);
+        user.setPassword("plain-p@ssW0rd");
+        String unexpectedtwo = "plain-p@ssW0rd";
+        assertNotEquals(unexpectedtwo, actual);
     }
 
     @Test
