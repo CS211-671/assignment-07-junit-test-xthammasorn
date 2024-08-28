@@ -1,40 +1,45 @@
 package ku.cs.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class StudentTest {
-    Student s;
+    Student s1;
 
+    @BeforeEach
+    void init(){
+        s1 = new Student("1234567","Bossza");
+    }
     @Test
-    @DisplayName("ทดสอบการเพิ่มคะแนน 45.15 คะแนน")
+    @DisplayName("เพิ่มคะแนน")
     void testAddScore(){
-        s = new Student("6xxxxxxxx", "StudentTest");
-        s.addScore(45.15);
-        assertEquals(45.15, s.getScore());
-
+        s1.addScore(40);
+        assertEquals(40,s1.getScore()); // เช็คว่าเท่ากันไหม (expect,actual)
+        s1.addScore(30);
+        assertEquals(70,s1.getScore());
     }
 
     @Test
-    @DisplayName("ทดสอบการเพิ่มคะแนน 85 คะแนน และให้ Object คำนวนเกรดออกมา")
+    @DisplayName("คำนวณเกรด")
     void testCalculateGrade(){
-        s = new Student("6xxxxxxxxx", "StudentTest");
-        s.addScore(85);
-        assertEquals("A", s.grade());
+        s1.addScore(60);
+        assertEquals("C",s1.grade());
     }
 
     @Test
-    @DisplayName("ทดสอบการเปลี่ยนชื่อ Boss ")
-    void testChangeName(){
-        s = new Student("6xxxxxxxxx", "StudentTest");
-        s.changeName("Boss");
-        assertEquals("Boss",s.getName());
+    @DisplayName("ค้นหา ID")
+    void testFindId(){
+        assertEquals("1234567",s1.getId());
     }
 
-
+    @Test
+    @DisplayName("เปลี่ยนชื่อ")
+    void testChangeName(){
+        s1.changeName("Neo");
+        assertEquals("Neo",s1.getName());
+    }
 
 }

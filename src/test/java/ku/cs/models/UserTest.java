@@ -14,9 +14,6 @@ class UserTest {
         String actual = user.getPassword();
         String unexpected = "plain-p@ssw0rd";
         assertNotEquals(unexpected, actual);
-        user.setPassword("plain-p@ssW0rd");
-        String unexpectedtwo = "plain-p@ssW0rd";
-        assertNotEquals(unexpectedtwo, actual);
     }
 
     @Test
@@ -25,5 +22,17 @@ class UserTest {
         User user = new User("user01", "plain-p@ssw0rd");
         boolean actual = user.validatePassword("plain-p@ssw0rd");
         assertTrue(actual);
+    }
+
+    @Test
+    void isUsername(){
+        User user = new User("user01", "1234");
+        assertTrue(user.isUsername("user01"));
+    }
+    @Test
+    void testSetPassword(){
+        User user = new User("user01","1234");
+        user.setPassword("4322");
+        assertTrue(user.validatePassword("4322"));
     }
 }
